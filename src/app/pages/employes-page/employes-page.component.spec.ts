@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { EmployesPageComponent } from './employes-page.component';
 
@@ -8,6 +9,7 @@ describe('EmployesPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ EmployesPageComponent ]
     })
     .compileComponents();
