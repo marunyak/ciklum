@@ -1,0 +1,25 @@
+{
+  "npmScope": "employees",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "employees": {
+      "tags": []
+    },
+    "employees-e2e": {
+      "tags": [],
+      "implicitDependencies": ["employees"]
+    },
+    "ui": {
+      "tags": []
+    }
+  }
+}
