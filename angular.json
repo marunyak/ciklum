@@ -123,29 +123,29 @@
         }
       }
     },
-    "ui": {
+    "employeess": {
       "projectType": "library",
-      "root": "libs/ui",
-      "sourceRoot": "libs/ui/src",
+      "root": "libs/employees",
+      "sourceRoot": "libs/employees/src",
       "prefix": "employees",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/ui/tsconfig.lib.json",
-              "libs/ui/tsconfig.spec.json"
+              "libs/employees/tsconfig.lib.json",
+              "libs/employees/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+            "exclude": ["**/node_modules/**", "!libs/employees/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/ui/jest.config.js",
-            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "jestConfig": "libs/employees/jest.config.js",
+            "tsConfig": "libs/employees/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/ui/src/test-setup.ts"
+            "setupFile": "libs/employees/src/test-setup.ts"
           }
         }
       },
