@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EmployesService } from '../employees/services/employes.service';
+import { EmployesService } from '../services/employes.service';
 
 export interface Employee {
   id: number;

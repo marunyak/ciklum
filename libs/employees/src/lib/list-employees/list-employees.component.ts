@@ -28,10 +28,10 @@ export interface Employee {
 
 @Component({
   selector: 'employees-employees',
-  templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.css']
+  templateUrl: './list-employees.component.html',
+  styleUrls: ['./list-employees.component.css']
 })
-export class EmployeesComponent implements OnInit {
+export class ListEmployeesComponent implements OnInit {
 
   employees: Employee[];
   loading = true;

@@ -8,11 +8,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { EmployeesComponent } from './employees.component';
+import { ListEmployeesComponent } from './list-employees.component';
 
 describe('EmployeesComponent', () => {
-  let component: EmployeesComponent;
-  let fixture: ComponentFixture<EmployeesComponent>;
+  let component: ListEmployeesComponent;
+  let fixture: ComponentFixture<ListEmployeesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,13 +27,13 @@ describe('EmployeesComponent', () => {
         MatProgressBarModule,
         MatListModule,
         MatProgressSpinnerModule, ],
-      declarations: [ EmployeesComponent ],
+      declarations: [ ListEmployeesComponent ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmployeesComponent);
+    fixture = TestBed.createComponent(ListEmployeesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
