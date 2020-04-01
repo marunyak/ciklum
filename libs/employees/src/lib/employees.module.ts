@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -11,21 +9,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
-const routes: Routes = [
-  { path: '', pathMatch:'full', redirectTo: '/employees'},
-  { path: 'employees', loadChildren: () => import('./employees/employees.module').then(n => n.EmployeesModule)},
-  { path: 'employee/:id', loadChildren: () => import('./employee/employee.module').then(n => n.EmployeeModule)}
+const route: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('../lib/list-employees/list-employees.module').then(n => n.ListEmployeesModule)
+  }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule,
+    RouterModule.forChild(route),
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -48,4 +44,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class UiModule {}
+export class EmployeesModule {}
