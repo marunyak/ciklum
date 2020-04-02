@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListEmployeesComponent } from './list-employees.component';
+import { EmployeeComponent } from './employee.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,17 +9,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { UiModule } from '@employees/ui';
 
 @NgModule({
-  declarations: [ListEmployeesComponent],
+  declarations: [EmployeeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: ListEmployeesComponent },
-      {
-        path: ':id',
-        loadChildren: () => import('./employee/employee.module').then(n => n.EmployeeModule)
-      }
+      { path: '', component: EmployeeComponent },
     ]),
     MatToolbarModule,
     MatIconModule,
@@ -28,7 +25,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressBarModule,
     MatListModule,
     MatProgressSpinnerModule,
+    UiModule
   ],
-  exports: [RouterModule]
+  exports: []
 })
-export class ListEmployeesModule { }
+export class EmployeeModule { }

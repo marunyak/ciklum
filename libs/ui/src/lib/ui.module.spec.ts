@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { EmployeesModule } from './employees.module';
+import { UiModule } from './ui.module';
 
-describe('EmployeesModule', () => {
+describe('UiModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [EmployeesModule]
+      imports: [UiModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(EmployeesModule).toBeDefined();
+    expect(UiModule).toBeDefined();
   });
 });

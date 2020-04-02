@@ -1,35 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EmployesService } from '../services/employes.service';
-
-export interface Employee {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-       street: string;
-       suite: string;
-       city: string;
-       zipcode: string;
-       geo: {
-            lat: number;
-            lng: number;
-       }
-  };
-  phone: string;
-  website: string;
-  company: {
-       name: string;
-       catchPhrase: string;
-       bs: string;
-  };
-}
+import { Employee } from '../models/employee.interface';
 
 @Component({
   selector: 'employees-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeComponent implements OnInit {
 
@@ -38,7 +16,8 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private  employeesService: EmployesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +30,7 @@ export class EmployeeComponent implements OnInit {
     this.employeesService.getEmployeeById(id).subscribe(res => {
       this.employee = res;
       this.loading = false;
+      this.cdr.detectChanges();
     });
   }
 }

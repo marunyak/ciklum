@@ -1,39 +1,36 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { UiComponent } from './ui.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { ListEmployeesComponent } from './list-employees.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-describe('EmployeesComponent', () => {
-  let component: ListEmployeesComponent;
-  let fixture: ComponentFixture<ListEmployeesComponent>;
+describe('UiComponent', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [ UiComponent ],
       imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        MatToolbarModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
         MatCardModule,
         MatProgressBarModule,
         MatListModule,
-        MatProgressSpinnerModule, ],
-      declarations: [ ListEmployeesComponent ],
+        MatProgressSpinnerModule,
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListEmployeesComponent);
+    fixture = TestBed.createComponent(UiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

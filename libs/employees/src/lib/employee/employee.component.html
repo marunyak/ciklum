@@ -1,4 +1,4 @@
-<h1>Employee Details</h1>
+<employees-ui ><div *ngIf="employee && !loading" class="list">{{ employee.name }}</div></employees-ui>
 <mat-spinner *ngIf="loading"></mat-spinner>
 <div>
 <mat-list ng-controller="ListEmployee" ng-cloak *ngIf="employee && !loading">
