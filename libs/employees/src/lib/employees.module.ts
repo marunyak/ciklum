@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UiModule } from '@employees/ui';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,15 +10,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
+import { EmployeesComponent } from './employees.component';
 
 const route: Routes = [
   {
     path: '',
-    loadChildren: () => import('../lib/list-employees/list-employees.module').then(n => n.ListEmployeesModule)
+    component: EmployeesComponent
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('./employee/employee.module').then(n => n.EmployeeModule)
   }
 ];
 
 @NgModule({
+  declarations: [
+    EmployeesComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,19 +38,8 @@ const route: Routes = [
     MatProgressBarModule,
     MatListModule,
     MatProgressSpinnerModule,
+    UiModule
   ],
-  declarations: [
-
-  ],
-  exports: [
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressBarModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    RouterModule
-  ]
+  exports: []
 })
 export class EmployeesModule {}

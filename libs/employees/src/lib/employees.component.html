@@ -1,4 +1,4 @@
-<h1>List Employees</h1>
+<employees-ui>List Employees</employees-ui>
 <mat-spinner *ngIf="loading"></mat-spinner>
 <mat-list ng-controller="ListCtrl" ng-cloak *ngIf="employees && !loading">
 <a mat-list-item *ngFor="let item of employees" [routerLink]="['/employees',item.id]">{{ item.name }} </a>
