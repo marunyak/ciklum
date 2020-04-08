@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { EmployesService } from './services/employes.service';
 import { Employee } from './models/employee.interface';
+import { UiService } from 'libs/ui/src/lib/service/ui.service';
 
 @Component({
   selector: 'employees-employees',
@@ -15,6 +16,7 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     private employeesService: EmployesService,
+    private uiService: UiService,
     private cdr: ChangeDetectorRef
   ) { }
 
@@ -31,6 +33,7 @@ export class EmployeesComponent implements OnInit {
       console.log(res)
       this.employees = res;
       this.loading = false;
+      this.uiService.setLog('List Employees');
       this.cdr.detectChanges();
     }, err => console.log(err));
   }

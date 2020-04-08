@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UiService } from './service/ui.service';
 
 @Component({
   selector: 'employees-ui',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UiComponent implements OnInit {
 
-  constructor() { }
+  title:String;
+
+  constructor(private uiService: UiService) { }
 
   ngOnInit(): void {
+    this.uiService.getLog().subscribe(arg => this.title = arg);
   }
 
 }

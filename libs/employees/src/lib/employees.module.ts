@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UiModule } from '@employees/ui';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,8 +36,7 @@ const route: Routes = [
     MatCardModule,
     MatProgressBarModule,
     MatListModule,
-    MatProgressSpinnerModule,
-    UiModule
+    MatProgressSpinnerModule
   ],
   exports: []
 })

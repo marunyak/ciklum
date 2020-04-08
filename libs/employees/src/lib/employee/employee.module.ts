@@ -9,7 +9,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { UiModule } from '@employees/ui';
 
 @NgModule({
   declarations: [EmployeeComponent],
@@ -24,8 +23,7 @@ import { UiModule } from '@employees/ui';
     MatCardModule,
     MatProgressBarModule,
     MatListModule,
-    MatProgressSpinnerModule,
-    UiModule
+    MatProgressSpinnerModule
   ],
   exports: []
 })
