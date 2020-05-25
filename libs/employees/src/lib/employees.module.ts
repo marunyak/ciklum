@@ -8,8 +8,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import { EmployeesComponent } from './employees.component';
+import { EmployeeFromAddComponent } from './employee-from-add/employee-from-add.component';
+import { EmployeeGuard } from '../../../ui/src/lib/guards/employee.guard';
 
 const route: Routes = [
   {
@@ -18,17 +22,20 @@ const route: Routes = [
   },
   {
     path: ':id',
+    canActivateChild: [EmployeeGuard],
     loadChildren: () => import('./employee/employee.module').then(n => n.EmployeeModule)
   }
 ];
 
 @NgModule({
   declarations: [
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeeFromAddComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(route),
     MatToolbarModule,
     MatIconModule,
@@ -36,7 +43,9 @@ const route: Routes = [
     MatCardModule,
     MatProgressBarModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: []
 })

@@ -9,11 +9,18 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { EmployeeFormEditComponent } from './employee-form-edit/employee-form-edit.component';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { EmployeeViewComponent } from './employee-view/employee-view.component';
 
 @NgModule({
-  declarations: [EmployeeComponent],
+  declarations: [EmployeeComponent, EmployeeFormEditComponent, EmployeeViewComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: EmployeeComponent },
     ]),
@@ -23,7 +30,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatCardModule,
     MatProgressBarModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: []
 })

@@ -1,0 +1,37 @@
+<div class="example-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <mat-form-field class="example-full-width">
+            <mat-label>Name</mat-label>
+            <input matInput  type="text"
+                id="name"
+                formControlName="name"
+                placeholder="type Name"
+            >
+        </mat-form-field>
+        <div *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)">
+            <small *ngIf="form.get('name').errors.required" [style.color]="'red'">Name is not required</small>
+            <small *ngIf="form.get('name').errors.minlength" [style.color]="'red'">Min 4 symbols </small>
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input  matInput type="text"
+                id="username"
+                formControlName="username"
+                placeholder="type username"
+                >
+        </mat-form-field>
+        <div *ngIf="form.get('username').invalid && (form.get('username').dirty || form.get('username').touched)">
+            <small *ngIf="form.get('username').errors.required" [style.color]="'red'">Username is not required</small>
+            <small *ngIf="form.get('username').errors.minlength" [style.color]="'red'">Min 4 symbols </small>
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input  matInput type="text"
+                id="email"
+                formControlName="email"
+                placeholder="type email"
+                >
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Edit</button>
+    </form>
+</div>

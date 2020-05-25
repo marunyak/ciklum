@@ -1,7 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { EmployesService } from './services/employes.service';
-import { Employee } from './models/employee.interface';
+import { Store, Select } from '@ngxs/store';
+import { FetchEmployees, AddEmployees } from '../../../../apps/employees/src/app/store/actions';
+import { EmployeesState } from '../../../../apps/employees/src/app/store/state';
+import { Observable } from 'rxjs';
 import { UiService } from 'libs/ui/src/lib/service/ui.service';
+import { Employee } from 'libs/ui/src/lib/models/employee.interface';
 
 @Component({
   selector: 'employees-employees',
@@ -11,32 +14,23 @@ import { UiService } from 'libs/ui/src/lib/service/ui.service';
 })
 export class EmployeesComponent implements OnInit {
 
-  employees: Employee[];
-  loading = true;
+  @Select(EmployeesState.getEmployeesList) employees$: Observable<Employee[]>
+  @Select(EmployeesState.isLoadingEmployees) loading$: Observable<any>
 
   constructor(
-    private employeesService: EmployesService,
     private uiService: UiService,
-    private cdr: ChangeDetectorRef
-  ) { }
+    private cdr: ChangeDetectorRef,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-    this.getEmpolyees();
-  }
-
-  getEmpolyees() {
-    this.employeesService.getEmployee().subscribe(res => {
-      res.sort((a, b) => {
-        if (a.name > b.name) { return 1; } else if (a.name < b.name) { return -1; }
-        return 0;
-      });
-      console.log(res)
-      this.employees = res;
-      this.loading = false;
+    this.store.dispatch(new FetchEmployees()).subscribe(() => {
       this.uiService.setLog('List Employees');
-      this.cdr.detectChanges();
     }, err => console.log(err));
   }
 
+  addNewEmployee(employee: Employee) {
+    this.store.dispatch(new AddEmployees(employee));
+  }
 
 }

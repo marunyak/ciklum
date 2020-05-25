@@ -1,8 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { EmployesService } from '../services/employes.service';
-import { Employee } from '../models/employee.interface';
-import { UiService } from '../../../../ui/src/lib/service/ui.service';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewRef, Output, EventEmitter } from '@angular/core';
+import { Store, Select } from '@ngxs/store';
+import { UpdateEmployee } from 'apps/employees/src/app/store/actions';
+import { Observable } from 'rxjs';
+import { EmployeeState } from 'apps/employees/src/app/store/state';
+import { Employee } from 'libs/ui/src/lib/models/employee.interface';
+import { UiService } from 'libs/ui/src/lib/service/ui.service';
 
 @Component({
   selector: 'employees-employee',
@@ -12,28 +14,37 @@ import { UiService } from '../../../../ui/src/lib/service/ui.service';
 })
 export class EmployeeComponent implements OnInit {
 
+  @Select(EmployeeState.isLoadingEmployee) loading$: Observable<any>;
+  @Select(EmployeeState.getEmployeeItem) employee$: Observable<Employee>;
+
   employee: Employee;
-  loading = true;
+  openEditMode = false;
 
   constructor(
-    private  employeesService: EmployesService,
-    private  uiService: UiService,
-    private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private store: Store,
+    private uiService: UiService
   ) { }
 
   ngOnInit(): void {
-    let id = 0;
-    this.route.params.subscribe(res => id = res.id);
-    this.getEmployeeById(id);
-  }
-
-  getEmployeeById(id: number) {
-    this.employeesService.getEmployeeById(id).subscribe(res => {
+    this.employee$.subscribe(res => {
       this.employee = res;
-      this.loading = false;
       this.uiService.setLog(res.name);
-      this.cdr.detectChanges();
     });
   }
+
+  editEmployee(editEmployee: Employee){
+    this.store.dispatch(new UpdateEmployee(editEmployee));
+  }
+
+  openEdit() {
+    this.openEditMode = !this.openEditMode;
+  }
+
+  private detectChanges() {
+    if (!(this.cdr as ViewRef).destroyed) {
+      this.cdr.detectChanges();
+    }
+  }
+
 }

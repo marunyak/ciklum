@@ -8,13 +8,12 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class UiService {
 
     private title = new BehaviorSubject<String>('');
-    private title$ = this.title.asObservable();
 
     setLog(item: string) {
         this.title.next(item);
     }
 
     getLog(): Observable<String> {
-        return this.title$;
+        return this.title.asObservable();
     }
 }

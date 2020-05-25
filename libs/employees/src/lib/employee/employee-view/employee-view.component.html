@@ -1,0 +1,14 @@
+<mat-list ng-controller="ListEmployee" ng-cloak >
+    <mat-list-item >Name: {{ employee.name }}</mat-list-item>
+    <mat-list-item >Username: {{ employee.username }}</mat-list-item>
+    <mat-list-item >Email: {{ employee.email }}</mat-list-item>
+    <mat-list>Address:
+         <mat-list-item >Street: {{ employee.address.street }}</mat-list-item>
+         <mat-list-item >Suite: {{ employee.address.suite }}</mat-list-item>
+         <mat-list-item >City: {{ employee.address.city }}</mat-list-item>
+         <mat-list-item >ZipCode: {{ employee.address.zipcode }}</mat-list-item>
+    </mat-list>
+    <mat-list-item >Phone: {{ employee.phone }}</mat-list-item>
+    <mat-list-item >Website: {{ employee.website }}</mat-list-item>
+    <mat-list-item >Company: {{ employee.company.name }}</mat-list-item>
+</mat-list>

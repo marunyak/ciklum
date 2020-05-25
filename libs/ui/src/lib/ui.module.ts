@@ -9,9 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { UiComponent } from './ui.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
-  declarations: [UiComponent],
+  declarations: [UiComponent, LoaderComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -23,6 +24,6 @@ import { UiComponent } from './ui.component';
     MatProgressSpinnerModule,
     RouterModule
   ],
-  exports: [UiComponent]
+  exports: [UiComponent, LoaderComponent]
 })
 export class UiModule {}

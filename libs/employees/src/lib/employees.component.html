@@ -1,4 +1,11 @@
-<mat-spinner *ngIf="loading"></mat-spinner>
-<mat-list ng-controller="ListCtrl" ng-cloak *ngIf="employees && !loading">
-<a mat-list-item *ngFor="let item of employees" [routerLink]="['/employees',item.id]">{{ item.name }} </a>
+<mat-list ng-controller="ListCtrl" ng-cloak *ngIf="employees$ && !(loading$ | async)">
+    <a mat-list-item *ngFor="let item of employees$ | async"
+        [routerLink]="['/employees',item.id]">
+        {{ item.name }}
+    </a>
 </mat-list>
+
+<employees-employee-from-add
+    *ngIf="!(loading$ | async) && employees$ | async"
+    (onAdd)="addNewEmployee($event)">
+</employees-employee-from-add>
