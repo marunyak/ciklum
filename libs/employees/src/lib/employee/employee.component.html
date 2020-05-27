@@ -5,7 +5,9 @@
           <ng-container *ngIf="openEditMode">
                <employees-employee-form-edit
                [editEmployee]="employee"
-               (edit)="editEmployee($event)">
+               (edit)="editEmployee($event)"
+               (save)="saveUpdateEmployee()"
+               >
                </employees-employee-form-edit>
           </ng-container>
      </ng-container>

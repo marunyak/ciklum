@@ -1,8 +1,16 @@
-import { Component, Output, Input, EventEmitter, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewRef } from '@angular/core';
+import {
+  Component,
+  Output,
+  Input,
+  EventEmitter,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Employee } from 'libs/ui/src/lib/models/employee.interface';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+//import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { form } from 'apps/employees/src/app/store/state';
 import { EMPTY } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'employees-employee-form-edit',
@@ -13,25 +21,29 @@ import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operato
 
 export class EmployeeFormEditComponent implements OnInit {
 
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    email: new FormControl('', [Validators.required])
-  })
+  // form = new FormGroup({
+  //   name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+  //   username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+  //   email: new FormControl('', [Validators.required])
+  // })
 
   @Output() edit = new EventEmitter();
+  @Output() save = new EventEmitter();
   @Input() editEmployee: Employee;
+
+  form;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.form = form;
     const { name, username, email } = this.editEmployee;
-    this.form.setValue({ name, username, email });
+    form.setValue({ name, username, email });
     this.initFormChanges();
   }
 
   initFormChanges() {
-    this.form.valueChanges.pipe(
+    form.valueChanges.pipe(
       debounceTime(1000),
       distinctUntilChanged(),
       switchMap(data => {
@@ -42,9 +54,6 @@ export class EmployeeFormEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.form.valid) {
-      console.log('Send on BackEnd')
-    } else console.log('Not Valid form')
+    this.save.emit();
   }
-
 }

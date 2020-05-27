@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewRef } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { UpdateEmployee } from 'apps/employees/src/app/store/actions';
+import { UpdateEmployee, SaveUpdateEmployee } from 'apps/employees/src/app/store/actions';
 import { Observable } from 'rxjs';
 import { EmployeeState } from 'apps/employees/src/app/store/state';
 import { Employee } from 'libs/ui/src/lib/models/employee.interface';
@@ -12,6 +12,7 @@ import { UiService } from 'libs/ui/src/lib/service/ui.service';
   styleUrls: ['./employee.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class EmployeeComponent implements OnInit {
 
   @Select(EmployeeState.isLoadingEmployee) loading$: Observable<any>;
@@ -35,6 +36,10 @@ export class EmployeeComponent implements OnInit {
 
   editEmployee(editEmployee: Employee){
     this.store.dispatch(new UpdateEmployee(editEmployee));
+  }
+
+  saveUpdateEmployee() {
+    this.store.dispatch(new SaveUpdateEmployee());
   }
 
   openEdit() {

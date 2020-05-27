@@ -1,19 +1,33 @@
 import { Injectable } from '@angular/core';
 import { State, Selector, Action, StateContext } from '@ngxs/store';
-import { FetchEmployee, UpdateEmployee } from '../actions/employee.actions';
+import { FetchEmployee, UpdateEmployee, SaveUpdateEmployee } from '../actions/employee.actions';
 import { EmployesService } from 'libs/ui/src/lib/service/employes.service';
-
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 export class EmployeeStateModel {
     loading: Boolean;
     employee
 }
 
+export const form = new FormGroup({
+    name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4)
+    ]),
+    username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4)
+    ]),
+    email: new FormControl('', [
+        Validators.required
+    ])
+})
+
 @State<EmployeeStateModel>({
     name: 'employee',
     defaults: {
         loading: true,
-        employee: null
+        employee: form.value
     }
 })
 
@@ -53,7 +67,7 @@ export class EmployeeState {
     @Action(UpdateEmployee)
     updateEmployee(ctx: StateContext<EmployeeStateModel>, action: UpdateEmployee) {
         const state = ctx.getState();
-        console.log(action)
+
         ctx.patchState({
             ...state,
             employee: {
@@ -61,6 +75,13 @@ export class EmployeeState {
                 ...action.employee
             }
         })
+    }
+
+    @Action(SaveUpdateEmployee)
+    saveUpdateEmployee(ctx: StateContext<EmployeeStateModel>) {
+        if (form.valid) {
+            console.log("Yeeeah, you can send response on BackEnd")
+        } else console.log("Form is not Valid!!!")
     }
 
 }
