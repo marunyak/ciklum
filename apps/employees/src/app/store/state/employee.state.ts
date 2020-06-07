@@ -6,7 +6,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 export class EmployeeStateModel {
     loading: Boolean;
-    employee
+    employee;
 }
 
 export const form = new FormGroup({

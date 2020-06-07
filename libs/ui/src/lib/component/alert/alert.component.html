@@ -1,0 +1,15 @@
+<!-- <h2 mat-dialog-title>INFO</h2> -->
+<mat-dialog-content>
+  <div>
+    You don't save your data. You want Exit?
+  </div>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="choice(false)">
+    Close
+  </button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="choice(true)">
+     OK
+  </button>
+</mat-dialog-actions>

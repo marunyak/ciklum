@@ -127,7 +127,7 @@
       "projectType": "library",
       "root": "libs/employees",
       "sourceRoot": "libs/employees/src",
-      "prefix": "employees",
+      "prefix": "employeess",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",

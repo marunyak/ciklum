@@ -8,12 +8,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EmployeeFormEditComponent } from './employee-form-edit/employee-form-edit.component';
-import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
+import { CanDeactivateGuard } from 'libs/ui/src/lib/guards/can-deactivate.guard';
 
 @NgModule({
   declarations: [EmployeeComponent, EmployeeFormEditComponent, EmployeeViewComponent],
@@ -22,7 +23,11 @@ import { EmployeeViewComponent } from './employee-view/employee-view.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      { path: '', component: EmployeeComponent },
+      {
+        path: '',
+        component: EmployeeComponent,
+        canDeactivate: [CanDeactivateGuard]
+      },
     ]),
     MatToolbarModule,
     MatIconModule,

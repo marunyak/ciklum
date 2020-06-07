@@ -8,7 +8,7 @@ import { Employee } from '../models/employee.interface';
 })
 export class EmployesService {
 
-  private url = 'https://jsonplaceholder.typicode.com';
+  private url = 'http://localhost:4200/assets/users';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json', Accept : 'application/json' })
   };
@@ -18,11 +18,11 @@ export class EmployesService {
   ) {}
 
   getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.url}/users`, this.httpOptions);
+    return this.http.get<Employee[]>(`${this.url}.json`, this.httpOptions);
   }
 
   getEmployeeById(id: number): Observable<Employee> {
-    return this.http.get<Employee>(`${this.url}/users/${id}`, this.httpOptions );
+    return this.http.get<Employee>(`${this.url}/${id}.json`, this.httpOptions );
   }
 
 }

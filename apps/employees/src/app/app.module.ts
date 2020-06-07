@@ -11,6 +11,7 @@ import { EmployeesState } from './store/state/employees.state';
 import { EmployeeState } from './store/state/employee.state';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptorService } from '../../../../libs/ui/src/lib/interceptors/loader.interceptor';
+import { environment } from '../environments/environment';
 //import { LoaderComponent } from '../../../../libs/ui/src/lib/loader/loader.component'
 
 @NgModule({
@@ -21,7 +22,9 @@ import { LoaderInterceptorService } from '../../../../libs/ui/src/lib/intercepto
     NgxsModule.forRoot([
       EmployeesState,
       EmployeeState
-    ]),
+    ], {
+      developmentMode: !environment.production
+    }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
